@@ -7,7 +7,12 @@ authors:
   - name: "hugoalh"
 repository-code: "https://github.com/hugoalh/is-object-plain-es"
 keywords:
+  - "ecmascript"
+  - "ecmascript-module"
   - "es"
+  - "es-module"
+  - "esm"
+  - "esmodule"
   - "is"
   - "javascript"
   - "js"
