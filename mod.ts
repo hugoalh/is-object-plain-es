@@ -30,14 +30,14 @@ export function isObjectPlain(item: object): boolean {
 	const itemDescriptors = Object.getOwnPropertyDescriptors(item);
 	let enumerableCount: number = 0;
 	for (const descriptor in itemDescriptors) {
-		if (Object.hasOwn(itemDescriptors, descriptor)) {
-			const descriptorProperties: PropertyDescriptor = itemDescriptors[descriptor];
+		if (Object.hasOwn(item, descriptor)) {
+			const properties: PropertyDescriptor = itemDescriptors[descriptor];
 			if (
-				!descriptorProperties.configurable ||
-				!descriptorProperties.enumerable ||
-				!descriptorProperties.writable ||
-				typeof descriptorProperties.get !== "undefined" ||
-				typeof descriptorProperties.set !== "undefined"
+				!properties.configurable ||
+				!properties.enumerable ||
+				!properties.writable ||
+				typeof properties.get !== "undefined" ||
+				typeof properties.set !== "undefined"
 			) {
 				return false;
 			}
