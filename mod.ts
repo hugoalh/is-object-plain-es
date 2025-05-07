@@ -27,26 +27,21 @@ export function isObjectPlain(item: object): boolean {
 	if (Object.getOwnPropertySymbols(item).length > 0) {
 		return false;
 	}
-	const itemDescriptors = Object.getOwnPropertyDescriptors(item);
-	let enumerableCount: number = 0;
-	for (const descriptor in itemDescriptors) {
-		if (Object.hasOwn(item, descriptor)) {
-			const properties: PropertyDescriptor = itemDescriptors[descriptor];
-			if (
-				!properties.configurable ||
-				!properties.enumerable ||
-				!properties.writable ||
-				typeof properties.get !== "undefined" ||
-				typeof properties.set !== "undefined"
-			) {
-				return false;
-			}
-			enumerableCount += 1;
-		} else {
+	let itemEntriesCount: number = 0;
+	for (const [key, properties] of Object.entries(Object.getOwnPropertyDescriptors(item))) {
+		if (
+			!Object.hasOwn(item, key) ||
+			!properties.configurable ||
+			!properties.enumerable ||
+			!properties.writable ||
+			typeof properties.get !== "undefined" ||
+			typeof properties.set !== "undefined"
+		) {
 			return false;
 		}
+		itemEntriesCount += 1;
 	}
-	if (Object.entries(item).length !== enumerableCount) {
+	if (Object.entries(item).length !== itemEntriesCount) {
 		return false;
 	}
 	return true;
