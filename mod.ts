@@ -1,15 +1,17 @@
 /**
- * Determine whether the object is plain.
- * @param {object} item Item that need to determine.
- * @returns {boolean} Determine result.
+ * Determine whether the item is plain object.
+ * @param {unknown} item Item that need to determine.
+ * @returns {item is object} Determine result.
  */
-export function isObjectPlain(item: object): boolean {
+export function isObjectPlain(item: unknown): item is object {
 	if (
 		typeof item !== "object" ||
 		item === null ||
+		Array.isArray(item) ||
 		!(item instanceof Object) ||
 		item.constructor.name !== "Object" ||
-		Object.prototype.toString.call(item) !== "[object Object]"
+		Object.prototype.toString.call(item) !== "[object Object]" ||
+		Object.getOwnPropertySymbols(item).length > 0
 	) {
 		return false;
 	}
@@ -24,26 +26,8 @@ export function isObjectPlain(item: object): boolean {
 	if (itemPrototype !== itemShadow) {
 		return false;
 	}
-	if (Object.getOwnPropertySymbols(item).length > 0) {
-		return false;
-	}
-	let itemEntriesCount: number = 0;
-	for (const [key, properties] of Object.entries(Object.getOwnPropertyDescriptors(item))) {
-		if (
-			!Object.hasOwn(item, key) ||
-			!properties.configurable ||
-			!properties.enumerable ||
-			!properties.writable ||
-			typeof properties.get !== "undefined" ||
-			typeof properties.set !== "undefined"
-		) {
-			return false;
-		}
-		itemEntriesCount += 1;
-	}
-	if (Object.entries(item).length !== itemEntriesCount) {
-		return false;
-	}
-	return true;
+	return Object.entries(Object.getOwnPropertyDescriptors(item)).every(([key, properties]: [string, PropertyDescriptor]): boolean => {
+		return (Object.hasOwn(item, key) && properties.configurable === true && properties.enumerable === true && properties.writable === true && typeof properties.get === "undefined" && typeof properties.set === "undefined");
+	});
 }
 export default isObjectPlain;

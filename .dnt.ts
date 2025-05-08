@@ -14,7 +14,7 @@ await invokeDenoNodeJSTransformer({
 	metadata: {
 		name: configJSR.getName(),
 		version: configJSR.getVersion(),
-		description: "A module to determine whether the object is plain.",
+		description: "A module to determine whether the item is plain object.",
 		keywords: [
 			"is",
 			"object",
