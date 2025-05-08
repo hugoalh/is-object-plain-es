@@ -55,7 +55,7 @@ An ECMAScript (JavaScript & TypeScript) module to determine whether the item is 
 ## 🧩 APIs
 
 - ```ts
-  function isObjectPlain(item: object): boolean;
+  function isObjectPlain(item: unknown): item is object;
   ```
 
 > [!NOTE]
