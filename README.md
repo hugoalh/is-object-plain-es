@@ -3,7 +3,8 @@
 [**⚖️** MIT](./LICENSE.md)
 
 🔗
-[GitHub](https://github.com/hugoalh/is-object-plain-es)
+[DistBoard @hugoalh](https://hugoalh.github.io/distboard/is_object_plain_ecmascript)
+● [GitHub](https://github.com/hugoalh/is-object-plain-es)
 ● [JSR](https://jsr.io/@hugoalh/is-object-plain)
 ● [NPM](https://www.npmjs.com/package/@hugoalh/is-object-plain)
 

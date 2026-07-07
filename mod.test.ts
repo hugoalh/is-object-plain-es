@@ -50,7 +50,7 @@ Deno.test("InReg Object", { permissions: "none" }, () => {
 	deepStrictEqual(isObjectPlain({ constructor: Sample1 }), false);
 });
 Deno.test("Function Arguments", { permissions: "none" }, () => {
-	//deno-lint-ignore hugoalh/no-iife
+	//deno-lint-ignore hugoalh/no-iife -- Test.
 	(function () {
 		deepStrictEqual(isObjectPlain(arguments), false);
 	})();

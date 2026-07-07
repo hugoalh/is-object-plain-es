@@ -7,6 +7,7 @@ authors:
   - name: "HUGOALH"
     alias: "hugoalh"
 repository-code: "https://github.com/hugoalh/is-object-plain-es"
+abstract: "An ECMAScript module to determine whether the item is plain object."
 keywords:
   - "ecmascript"
   - "es"
